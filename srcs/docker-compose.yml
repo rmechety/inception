@@ -1,0 +1,69 @@
+version: '3'
+services:
+  # Mariadb config
+  mariadb:
+    build :
+      context : ./requirements/mariadb/.
+      dockerfile : ./Dockerfile
+    image : mariadb
+    container_name: mariadb
+    restart : always
+    volumes:
+      - db_data:/var/lib/mysql/
+    networks:
+      - backend
+    env_file :
+      - .env
+
+  wordpress:
+    build :
+      context : ./requirements/wordpress/.
+      dockerfile : ./Dockerfile
+    image : wordpress
+    container_name: wordpress
+    restart: always
+    depends_on :
+      - mariadb
+    networks:
+      - backend
+    volumes :
+      - wordpress:/var/www/html
+    env_file :
+      - .env
+
+  # Nginx config
+  nginx:
+    build :
+      context : ./requirements/nginx/.
+      dockerfile : ./Dockerfile
+    image: nginx
+    container_name: nginx
+    depends_on :
+      - wordpress
+    ports:
+      - "443:443" # host:container/UDP or tcp
+    restart: always
+    volumes:
+      - wordpress:/var/www/html/
+    networks:
+      - backend
+    env_file :
+      - .env
+
+networks:
+  backend:
+
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/rmechety/data/db_data
+      o: bind
+
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/rmechety/data/wordpress
+      o: bind

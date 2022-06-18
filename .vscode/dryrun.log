@@ -1,0 +1,9 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/rmechety/work/myinception'
+ 
+mkdir -p /home/rmechety/data/wordpress
+mkdir -p /home/rmechety/data/db_data
+docker-compose -f srcs/docker-compose.yml build
+docker-compose -f srcs/docker-compose.yml up
+make: Leaving directory '/home/rmechety/work/myinception'
+ 
