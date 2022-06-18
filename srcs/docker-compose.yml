@@ -1,6 +1,5 @@
 version: '3'
 services:
-  # Mariadb config
   mariadb:
     build :
       context : ./requirements/mariadb/.
@@ -31,7 +30,6 @@ services:
     env_file :
       - .env
 
-  # Nginx config
   nginx:
     build :
       context : ./requirements/nginx/.
@@ -41,7 +39,7 @@ services:
     depends_on :
       - wordpress
     ports:
-      - "443:443" # host:container/UDP or tcp
+      - "443:443"
     restart: always
     volumes:
       - wordpress:/var/www/html/

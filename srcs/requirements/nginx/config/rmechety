@@ -1,42 +1,27 @@
 server {
-        listen 443 ssl;
-        listen [::]:443 ssl;
-        server_name localhost rmechety.42.fr;
+		listen 443 ssl;
+		listen [::]:443 ssl;
+		server_name localhost rmechety.42.fr;
 
-        include /etc/nginx/mime.types;
-        ssl     on;
-        ssl_certificate         /etc/nginx/ssl/localhost.crt;
-        ssl_certificate_key     /etc/nginx/ssl/localhost.key;
-        ssl_protocols            TLSv1.2 TLSv1.3;
+		include /etc/nginx/mime.types;
+		ssl     on;
+		ssl_certificate         /etc/nginx/ssl/localhost.crt;
+		ssl_certificate_key     /etc/nginx/ssl/localhost.key;
+		ssl_protocols            TLSv1.2 TLSv1.3;
 
-        root /var/www/html;
-        # Add index.php to the list if you are using PHP
-        index index.php;
+		root /var/www/html;
+		# Add index.php to the list if you are using PHP
+		index index.php;
 
-        location / {
-                autoindex on;
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/ =404;
-        }
+		location / {
+				autoindex on;
+				# First attempt to serve request as file, then
+				# as directory, then fall back to displaying a 404.
+				try_files $uri $uri/ =404;
+		}
 
-        # location ~ \.css {
-        # add_header  Content-Type    text/css;
-        # }
-        # location ~ \.js {
-        # add_header  Content-Type    application/x-javascript;
-        # }
-        # # deny access to .htaccess files, if Apache's document root
-        # # concurs with nginx's one
-        # #
-        # location ~ /\.ht {
-        #         deny all;
-        # }
-
-        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-        #
 		# https://grafikart.fr/tutoriels/php-fpm-nginx-693
-        location ~ \.php$ {
+		location ~ \.php$ {
 			fastcgi_split_path_info ^(.+\.php)(/.+)$;
 
 			fastcgi_pass wordpress:9000;

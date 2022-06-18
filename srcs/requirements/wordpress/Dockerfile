@@ -6,7 +6,7 @@ RUN apt update -y && apt install curl mariadb-client php php7.3 php7.3-fpm php7.
 RUN mkdir -p /var/www/html && cd /var/www/html
 
 COPY ./config/php-fpm.conf /etc/php/7.3/fpm/pool.d/www.conf
-COPY ./config/script.sh /var/.
+COPY ./config/wordpress_install.sh /var/.
 
 
 # https://wp-cli.org/fr/#installation
