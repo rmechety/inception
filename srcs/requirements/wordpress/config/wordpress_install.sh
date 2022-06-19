@@ -17,7 +17,7 @@ then
 	echo "##################################################"
 
 	echo "Install WP Core"
-	wp core install --url="localhost" --title="Super Site De Rayan Mechety" --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --path="/var/www/html/" --allow-root
+	wp core install --url="rmechety.42.fr" --title="Super Site De Rayan Mechety" --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --path="/var/www/html/" --allow-root
 	echo "[+] Install WP Core"
 
 	echo "##################################################"
